@@ -1,19 +1,16 @@
 // SPDX-FileCopyrightText: 2024 LiveKit, Inc.
 //
 // SPDX-License-Identifier: Apache-2.0
-import {
-  type JobContext,
-  WorkerOptions,
-  cli,
-  defineAgent,
-  llm,
-  multimodal,
-} from '@livekit/agents';
+import { type JobContext, WorkerOptions, cli, defineAgent, llm, multimodal } from '@livekit/agents';
 import * as openai from '@livekit/agents-plugin-openai';
 import dotenv from 'dotenv';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { z } from 'zod';
+
+
+dotenv.config();
+
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const envPath = path.join(__dirname, '../.env.local');
@@ -61,4 +58,11 @@ export default defineAgent({
   },
 });
 
-cli.runApp(new WorkerOptions({ agent: fileURLToPath(import.meta.url) }));
+
+
+const port = process.env.PORT || 3000;
+
+cli.runApp(new WorkerOptions({ 
+  agent: fileURLToPath(import.meta.url),
+  port: Number(port)
+}));

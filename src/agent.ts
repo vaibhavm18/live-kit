@@ -60,7 +60,7 @@ export default defineAgent({
 
 
 
-const port = process.env.PORT || 3000;
+const port = 8081;
 
 cli.runApp(new WorkerOptions({ 
   host: "0.0.0.0",

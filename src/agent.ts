@@ -63,6 +63,7 @@ export default defineAgent({
 const port = process.env.PORT || 3000;
 
 cli.runApp(new WorkerOptions({ 
+  host: "0.0.0.0",
   agent: fileURLToPath(import.meta.url),
   port: Number(port)
 }));
